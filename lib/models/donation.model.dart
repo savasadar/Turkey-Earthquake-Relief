@@ -1,7 +1,7 @@
-import 'package:admin/models/chain.dart';
+import 'package:admin/models/chain.enum.dart';
 import 'package:admin/models/token.model.dart';
 
-class RecentDonation {
+class Donation {
   final String? donor;
   final Chain chain;
   final DateTime date;
@@ -9,7 +9,7 @@ class RecentDonation {
   Token token;
   String txHash = '';
 
-  RecentDonation({
+  Donation({
     this.donor,
     required this.date,
     required this.amount,

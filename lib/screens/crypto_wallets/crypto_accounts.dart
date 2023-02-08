@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:admin/responsive.dart';
-import 'package:admin/services/relief_provider.dart';
+import 'package:admin/models/account_info.model.dart';
+import 'package:admin/components/responsive.dart';
+import 'package:admin/services/providers/relief_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:admin/models/AccounInfo.dart';
 import 'package:provider/provider.dart';
-import '../../../constants.dart';
-import 'file_info_card.dart';
+
+import '../../utils/constants.dart';
+import 'account_info_card.dart';
 
 class MyFiles extends StatelessWidget {
   const MyFiles({
@@ -25,32 +26,27 @@ class MyFiles extends StatelessWidget {
               "Validated Accounts",
               style: Theme.of(context).textTheme.subtitle1,
             ),
-            /*
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                      defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
-              ),
-              onPressed: () {},
-              icon: Icon(Icons.add),
-              label: Text("Add New"),
-            ),
-            */
+            // ElevatedButton.icon(
+            //   style: TextButton.styleFrom(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: defaultPadding * 1.5,
+            //       vertical:
+            //           defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+            //     ),
+            //   ),
+            //   onPressed: () {},
+            //   icon: Icon(Icons.add),
+            //   label: Text("Add New"),
+            // ),
           ],
         ),
         SizedBox(height: defaultPadding),
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
           ),
           tablet: FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
-          ),
+          desktop: FileInfoCardGridView(),
         ),
       ],
     );
@@ -61,11 +57,9 @@ class FileInfoCardGridView extends StatelessWidget {
   const FileInfoCardGridView({
     Key? key,
     this.crossAxisCount = 4,
-    this.childAspectRatio = 1,
   }) : super(key: key);
 
   final int crossAxisCount;
-  final double childAspectRatio;
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +68,13 @@ class FileInfoCardGridView extends StatelessWidget {
 
     return LayoutBuilder(builder: (context, con) {
       int crossAxisCount = this.crossAxisCount;
+      double childAspectRatio = 1;
 
-      crossAxisCount = max((con.maxWidth % 180).toInt(), 1);
+      crossAxisCount = max((con.maxWidth ~/ 190).toInt(), 1);
 
-      print("CrossAxisCount: $crossAxisCount");
+      if (crossAxisCount == 1) {
+        childAspectRatio = 2;
+      }
 
       return GridView.builder(
         physics: NeverScrollableScrollPhysics(),

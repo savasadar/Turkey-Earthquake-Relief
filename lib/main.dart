@@ -1,14 +1,16 @@
-import 'package:admin/constants.dart';
-import 'package:admin/controllers/MenuProvider.dart';
-import 'package:admin/screens/dashboard/bank_accounts.dart';
-import 'package:admin/screens/dashboard/dashboard_screen.dart';
-import 'package:admin/screens/main/components/full_page.dart';
+import 'package:admin/utils/constants.dart';
+import 'package:admin/screens/bank_accounts/bank_accounts.dart';
+import 'package:admin/screens/crypto_wallets/crypto_wallets.dart';
+import 'package:admin/components/full_page.dart';
+import 'package:admin/screens/information_sources/sources.dart';
 import 'package:admin/services/firebase_manager.dart';
-import 'package:admin/services/relief_provider.dart';
+import 'package:admin/services/providers/relief_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
+
+import 'services/providers/menu_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +53,7 @@ class MyApp extends StatelessWidget {
               VWidget(path: '/', widget: DashboardScreen()),
               VWidget(path: 'dashboard', widget: DashboardScreen()),
               VWidget(path: 'bankaccounts', widget: BankAccountsScreen()),
+              VWidget(path: 'sources', widget: SourcesScreen())
             ],
           )
         ]);

@@ -1,12 +1,12 @@
-import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/components/my_fields.dart';
+import 'package:admin/components/responsive.dart';
+import 'package:admin/screens/crypto_wallets/crypto_accounts.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import 'components/header.dart';
+import '../../utils/constants.dart';
+import '../../components/header.dart';
 
-import 'components/recent_donations.dart';
-import 'components/storage_details.dart';
+import 'recent_donations.dart';
+import 'total_funds_details.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override

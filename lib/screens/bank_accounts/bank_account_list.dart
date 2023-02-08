@@ -1,9 +1,8 @@
-import 'package:admin/models/BankAccount.dart';
+import 'package:admin/models/bank_accout.model.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../../constants.dart';
+import '../../utils/constants.dart';
 
 class BankAccountList extends StatelessWidget {
   const BankAccountList({

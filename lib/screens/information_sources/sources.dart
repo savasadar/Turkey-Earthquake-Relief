@@ -1,15 +1,10 @@
-import 'package:admin/responsive.dart';
-import 'package:admin/screens/dashboard/components/bank_account_list.dart';
-import 'package:admin/screens/dashboard/components/my_fields.dart';
+import 'package:admin/components/header.dart';
+import 'package:admin/screens/information_sources/source_list.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import 'components/header.dart';
+import '../../utils/constants.dart';
 
-import 'components/recent_donations.dart';
-import 'components/storage_details.dart';
-
-class BankAccountsScreen extends StatelessWidget {
+class SourcesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -18,7 +13,7 @@ class BankAccountsScreen extends StatelessWidget {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            Header(title: "Validated Bank Accounts"),
+            Header(title: "Information Sources"),
             SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +23,7 @@ class BankAccountsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: defaultPadding),
-                      BankAccountList(),
+                      SourceList(),
                       // if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
                       // if (Responsive.isMobile(context)) StarageDetails(),
                     ],

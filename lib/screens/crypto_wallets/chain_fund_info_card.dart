@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
-import '../../../constants.dart';
+import '../../utils/constants.dart';
 
 class StorageInfoCard extends StatelessWidget {
   const StorageInfoCard({
@@ -45,10 +45,6 @@ class StorageInfoCard extends StatelessWidget {
                     title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    "$numOfFiles Donations",
-                    style: Theme.of(context).textTheme.caption!.copyWith(color: Colors.white70),
                   ),
                 ],
               ),

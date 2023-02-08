@@ -1,10 +1,10 @@
-import 'package:admin/models/AccounInfo.dart';
-import 'package:admin/models/chain.dart';
+import 'package:admin/models/account_info.model.dart';
+import 'package:admin/models/chain.enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../../../constants.dart';
+import '../../utils/constants.dart';
 
 class FileInfoCard extends StatelessWidget {
   const FileInfoCard({

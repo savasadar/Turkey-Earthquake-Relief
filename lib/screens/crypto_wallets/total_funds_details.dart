@@ -1,12 +1,12 @@
-import 'package:admin/models/AccounInfo.dart';
-import 'package:admin/models/chain.dart';
-import 'package:admin/services/relief_provider.dart';
+import 'package:admin/models/account_info.model.dart';
+import 'package:admin/models/chain.enum.dart';
+import 'package:admin/services/providers/relief_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../utils/constants.dart';
 import 'chart.dart';
-import 'storage_info_card.dart';
+import 'chain_fund_info_card.dart';
 
 class StarageDetails extends StatelessWidget {
   const StarageDetails({

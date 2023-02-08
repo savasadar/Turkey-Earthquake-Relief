@@ -1,7 +1,8 @@
-import 'package:admin/controllers/MenuProvider.dart';
+import 'package:admin/services/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
 class SideMenu extends StatelessWidget {
@@ -33,6 +34,21 @@ class SideMenu extends StatelessWidget {
             press: () {
               context.vRouter.to('/bankaccounts');
               menuProvider.closeMenu();
+            },
+          ),
+          DrawerListTile(
+            title: "Information Sources",
+            svgSrc: "assets/icons/menu_doc.svg",
+            press: () {
+              context.vRouter.to('/sources');
+              menuProvider.closeMenu();
+            },
+          ),
+          DrawerListTile(
+            title: "Github",
+            svgSrc: "assets/icons/folder.svg",
+            press: () {
+              launchUrl(Uri.parse('https://github.com/savasadar/Turkey-Earthquake-Relief'));
             },
           ),
         ],

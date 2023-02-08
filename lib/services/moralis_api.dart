@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:admin/models/RecentDonaiton.dart';
-import 'package:admin/models/chain.dart';
+import 'package:admin/models/donation.model.dart';
+import 'package:admin/models/chain.enum.dart';
 import 'package:admin/models/token.model.dart';
 import 'package:admin/services/firebase_manager.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 
 class MoralisAPI {
   static String apiKey = 'pBg33FdRMQ1T1Iig3QxYumap0NbScrs8l870lx6IEqrQEX90gR8QfxhnwjKVp746';
@@ -35,7 +33,6 @@ class MoralisAPI {
         BigInt balance = BigInt.tryParse(tokenData['balance']) ?? BigInt.zero;
         String address = tokenData['token_address'];
 
-     
         Token? token = await getToken(address, chain, {
           'decimals': decimals,
           'symbol': tokenData['symbol'],
@@ -60,7 +57,6 @@ class MoralisAPI {
       totalUSD += (nativeBalance / BigInt.from(10).pow(18)) * token.priceUSD;
 
       return totalUSD;
-
     } else {
       return 0;
     }
@@ -140,27 +136,7 @@ class MoralisAPI {
     }
   }
 
-  static Future getRecentTransactions(String address, Chain chain) async {
-    var url = Uri.parse('$baseURL/$address/verbose?chain=${chain.shortName}&limit=1');
-
-    var response = await http.get(
-      url,
-      headers: headers,
-    );
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      List<RecentDonation> transactions = data['result'].map<RecentDonation>((e) {
-        double amount = 0;
-      }).toList();
-
-      return data;
-    } else {
-      return [];
-    }
-  }
-
-  static Future<List<RecentDonation>> getRecentERC20Transactions(String address, Chain chain) async {
+  static Future<List<Donation>> getRecentERC20Transactions(String address, Chain chain) async {
     var url = Uri.parse('$baseURL/$address/erc20/transfers?chain=${chain.shortName}&limit=10');
 
     var response = await http.get(
@@ -173,7 +149,7 @@ class MoralisAPI {
 
       List result = data['result'];
 
-      List<RecentDonation> transactions = [];
+      List<Donation> transactions = [];
 
       for (var tokenTransfer in result) {
         Token? token = await getToken(tokenTransfer['address'], chain, {});
@@ -183,7 +159,7 @@ class MoralisAPI {
         }
 
         transactions.add(
-          RecentDonation(
+          Donation(
             date: DateTime.parse(tokenTransfer['block_timestamp']),
             amount: (BigInt.parse(tokenTransfer['value']) / BigInt.from(10).pow(token.decimals)).toDouble(),
             chain: chain,
@@ -196,7 +172,7 @@ class MoralisAPI {
 
       return transactions;
     } else {
-      return <RecentDonation>[];
+      return <Donation>[];
     }
   }
 }

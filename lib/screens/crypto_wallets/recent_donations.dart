@@ -1,6 +1,6 @@
-import 'package:admin/models/RecentDonaiton.dart';
-import 'package:admin/models/chain.dart';
-import 'package:admin/services/relief_provider.dart';
+import 'package:admin/models/donation.model.dart';
+import 'package:admin/models/chain.enum.dart';
+import 'package:admin/services/providers/relief_provider.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../constants.dart';
+import '../../utils/constants.dart';
 
 class RecentDonations extends StatelessWidget {
   const RecentDonations({
@@ -68,11 +68,10 @@ class RecentDonations extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(RecentDonation fileInfo) {
+DataRow recentFileDataRow(Donation fileInfo) {
   String hideAddress(String address) {
     return address.substring(0, 6) + '...' + address.substring(address.length - 4, address.length);
   }
-
 
   String parseAmount() {
     if (fileInfo.amount < 1) {

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:admin/models/chain.dart';
 import 'package:flutter/material.dart';
 
 class BankAccount {

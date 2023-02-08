@@ -1,11 +1,11 @@
-import 'package:admin/models/chain.dart';
-import 'package:admin/services/relief_provider.dart';
+import 'package:admin/models/chain.enum.dart';
+import 'package:admin/services/providers/relief_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../utils/constants.dart';
 
 class Chart extends StatefulWidget {
   const Chart({
@@ -22,7 +22,6 @@ class _ChartState extends State<Chart> {
   @override
   void initState() {
     super.initState();
-    ReliefProvider provider = context.read<ReliefProvider>();
   }
 
   @override

@@ -1,6 +1,6 @@
-import 'package:admin/models/AccounInfo.dart';
-import 'package:admin/models/RecentDonaiton.dart';
-import 'package:admin/models/chain.dart';
+import 'package:admin/models/account_info.model.dart';
+import 'package:admin/models/donation.model.dart';
+import 'package:admin/models/chain.enum.dart';
 import 'package:admin/services/firebase_manager.dart';
 import 'package:admin/services/moralis_api.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,6 @@ class ReliefProvider with ChangeNotifier {
 
   void getBalances() async {
     for (var account in accounts) {
-
       if (!account.fetchData) {
         continue;
       }
@@ -43,7 +42,7 @@ class ReliefProvider with ChangeNotifier {
     }
   }
 
-  List<RecentDonation>? recentDonations;
+  List<Donation>? recentDonations;
 
   List<AccountInfo> accounts = [
     AccountInfo(

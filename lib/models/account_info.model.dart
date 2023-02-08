@@ -1,6 +1,4 @@
-import 'package:admin/constants.dart';
-import 'package:admin/models/chain.dart';
-import 'package:flutter/material.dart';
+import 'package:admin/models/chain.enum.dart';
 
 class AccountInfo {
   final String? address;
