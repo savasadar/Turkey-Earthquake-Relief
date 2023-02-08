@@ -9,7 +9,13 @@ class MenuProvider extends ChangeNotifier {
 
   void controlMenu() {
     if (!_scaffoldKey.currentState!.isDrawerOpen) {
-      _scaffoldKey.currentState!.openDrawer();
+      _scaffoldKey.currentState?.openDrawer();
+    }
+  }
+
+  void closeMenu() {
+    if (_scaffoldKey.currentState!.isDrawerOpen) {
+      _scaffoldKey.currentState?.closeDrawer();
     }
   }
 }

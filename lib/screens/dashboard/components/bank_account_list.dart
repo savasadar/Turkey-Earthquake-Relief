@@ -31,10 +31,18 @@ class BankAccountList extends StatelessWidget {
             height: 530,
             child: DataTable2(
               columnSpacing: defaultPadding,
-              minWidth: 600,
+              minWidth: 1000,
               columns: [
                 DataColumn2(
-                  label: Text("Organization"),
+                  label: Text("IBAN"),
+                  size: ColumnSize.L,
+                ),
+                DataColumn2(
+                  label: Text("Swift Code"),
+                  size: ColumnSize.S,
+                ),
+                DataColumn2(
+                  label: Text("Currency"),
                   size: ColumnSize.S,
                 ),
                 DataColumn2(
@@ -42,15 +50,7 @@ class BankAccountList extends StatelessWidget {
                   size: ColumnSize.M,
                 ),
                 DataColumn2(
-                  label: Text("IBAN"),
-                  size: ColumnSize.L,
-                ),
-                DataColumn2(
-                  label: Text("Currency"),
-                  size: ColumnSize.S,
-                ),
-                DataColumn2(
-                  label: Text("Swift Code"),
+                  label: Text("Organization"),
                   size: ColumnSize.S,
                 ),
               ],
@@ -70,43 +70,8 @@ DataRow bankAccountDataRow(BuildContext context, BankAccount bankAccount) {
   return DataRow(
     cells: [
       DataCell(
-        Container(
-          padding: EdgeInsets.all(defaultPadding * 0.6),
-          height: 40,
-          width: 80,
-          decoration: BoxDecoration(
-            color: bankAccount.organizationColor.withOpacity(0.4),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
-          child: Center(
-            child: Text(
-              bankAccount.organizationName.toUpperCase(),
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
-      ),
-      DataCell(
-        Container(
-          padding: EdgeInsets.all(defaultPadding * 0.6),
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
-          child: Text(
-            bankAccount.bankName.toUpperCase(),
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-      ),
-      DataCell(
         Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(bankAccount.iban),
-            ),
             IconButton(
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: bankAccount.iban));
@@ -116,18 +81,58 @@ DataRow bankAccountDataRow(BuildContext context, BankAccount bankAccount) {
                 ));
               },
               icon: Icon(Icons.copy),
-            )
+            ),
+            Text(bankAccount.iban),
           ],
+        ),
+      ),
+      DataCell(
+        Text(
+          bankAccount.swiftCode.toString(),
         ),
       ),
       DataCell(
         Text(bankAccount.currency.toString()),
       ),
       DataCell(
-        ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 100),
-          child: Text(
-            bankAccount.swiftCode.toString(),
+        Container(
+          height: 30,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  bankAccount.bankName.toUpperCase(),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      DataCell(
+        Container(
+          padding: EdgeInsets.all(defaultPadding * 0.1),
+          height: 30,
+          width: 80,
+          decoration: BoxDecoration(
+            color: bankAccount.organizationColor.withOpacity(0.4),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Center(
+            child: Text(
+              bankAccount.organizationName.toUpperCase(),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
           ),
         ),
       ),

@@ -1,9 +1,10 @@
+import 'package:admin/controllers/MenuProvider.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/screens/main/components/side_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
+
+
 
 class FullPage extends StatefulWidget {
   final Widget? child;
@@ -17,7 +18,11 @@ class FullPage extends StatefulWidget {
 class _FullPageState extends State<FullPage> {
   @override
   Widget build(BuildContext context) {
+
+    MenuProvider menuProvider = context.watch<MenuProvider>();
+
     return Scaffold(
+      key: menuProvider.scaffoldKey,
       drawer: SideMenu(),
       body: SafeArea(
         child: Row(

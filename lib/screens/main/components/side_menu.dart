@@ -1,5 +1,7 @@
+import 'package:admin/controllers/MenuProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
 
 class SideMenu extends StatelessWidget {
@@ -9,6 +11,8 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MenuProvider menuProvider = context.watch<MenuProvider>();
+
     return Drawer(
       child: ListView(
         children: [
@@ -20,6 +24,7 @@ class SideMenu extends StatelessWidget {
             svgSrc: "assets/icons/chains/ethereum.svg",
             press: () {
               context.vRouter.to('/dashboard');
+              menuProvider.closeMenu();
             },
           ),
           DrawerListTile(
@@ -27,6 +32,7 @@ class SideMenu extends StatelessWidget {
             svgSrc: "assets/icons/menu_tran.svg",
             press: () {
               context.vRouter.to('/bankaccounts');
+              menuProvider.closeMenu();
             },
           ),
         ],

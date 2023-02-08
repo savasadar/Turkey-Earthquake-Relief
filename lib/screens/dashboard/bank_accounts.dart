@@ -29,8 +29,8 @@ class BankAccountsScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: defaultPadding),
                       BankAccountList(),
-                      if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) StarageDetails(),
+                      // if (Responsive.isMobile(context)) SizedBox(height: defaultPadding),
+                      // if (Responsive.isMobile(context)) StarageDetails(),
                     ],
                   ),
                 ),

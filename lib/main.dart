@@ -16,16 +16,16 @@ void main() async {
   await FirebaseManager.init();
   runApp(
     MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => MenuProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => ReliefProvider(),
-          ),
-        ],
-        child: MyApp(),
-      ),
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MenuProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ReliefProvider(),
+        ),
+      ],
+      child: MyApp(),
+    ),
   );
 }
 
@@ -34,26 +34,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VRouter(
-      debugShowCheckedModeBanner: false,
-      title: 'Turkey Earthquake Relief Panel',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bgColor,
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
-        canvasColor: secondaryColor,
-      ),
-      mode: VRouterMode.history,
-      transitionDuration: Duration.zero,
-      routes: [
-        VNester(
-          path: '/',
-          widgetBuilder: (child) => FullPage(child: child),
-          nestedRoutes: [
-            VWidget(path: '/', widget: DashboardScreen()),
-            VWidget(path: 'dashboard', widget: DashboardScreen()),
-            VWidget(path: 'bankaccounts', widget: BankAccountsScreen()),
-          ],
-        )
-      ]
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Turkey Earthquake Relief Panel',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: bgColor,
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
+          canvasColor: secondaryColor,
+        ),
+        mode: VRouterMode.history,
+        transitionDuration: Duration.zero,
+        routes: [
+          VNester(
+            path: '/',
+            widgetBuilder: (child) => FullPage(child: child),
+            nestedRoutes: [
+              VWidget(path: '/', widget: DashboardScreen()),
+              VWidget(path: 'dashboard', widget: DashboardScreen()),
+              VWidget(path: 'bankaccounts', widget: BankAccountsScreen()),
+            ],
+          )
+        ]);
   }
 }
