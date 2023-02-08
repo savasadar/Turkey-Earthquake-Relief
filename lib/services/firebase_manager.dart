@@ -5,7 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 class FirebaseManager {
   static FirebaseDatabase database = FirebaseDatabase.instance;
 
-  static Map? tokenPrices;
+  static Map? tokens;
 
   static Future init() async {
     await Firebase.initializeApp(
@@ -19,7 +19,7 @@ class FirebaseManager {
     DatabaseEvent event = await database.ref().child('token_prices').once();
     DataSnapshot snapshot = event.snapshot;
 
-    tokenPrices = snapshot.value as Map?;
+    tokens = snapshot.value as Map?;
   }
 
   static Future saveTokenPrice(String address, Map data, String chain) async {

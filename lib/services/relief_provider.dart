@@ -1,4 +1,5 @@
 import 'package:admin/models/AccounInfo.dart';
+import 'package:admin/models/RecentDonaiton.dart';
 import 'package:admin/models/chain.dart';
 import 'package:admin/services/firebase_manager.dart';
 import 'package:admin/services/moralis_api.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 class ReliefProvider with ChangeNotifier {
   ReliefProvider() {
     setTotalRaised();
+
     FirebaseManager.getTokenPrices().then((value) {
       getBalances();
     });
@@ -16,14 +18,27 @@ class ReliefProvider with ChangeNotifier {
     for (var account in accounts) {
       account.totalAmountUSD = await MoralisAPI.getBalance(
         account.address!,
-        account.chain.shortName,
+        account.chain,
       );
+
+      MoralisAPI.getRecentERC20Transactions(account.address!, account.chain).then((value) {
+        if (recentDonations == null) {
+          recentDonations = value;
+        } else {
+          recentDonations!.addAll(value);
+        }
+
+        recentDonations!.sort((a, b) => b.date.compareTo(a.date));
+        notifyListeners();
+      });
 
       setTotalRaised();
 
       notifyListeners();
     }
   }
+
+  List<RecentDonation>? recentDonations;
 
   List<AccountInfo> accounts = [
     AccountInfo(

@@ -1,8 +1,12 @@
 import 'package:admin/models/RecentDonaiton.dart';
 import 'package:admin/models/chain.dart';
+import 'package:admin/services/relief_provider.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants.dart';
 
@@ -13,6 +17,8 @@ class RecentDonations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ReliefProvider reliefProvider = context.watch<ReliefProvider>();
+
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -32,22 +38,28 @@ class RecentDonations extends StatelessWidget {
             height: 530,
             child: DataTable2(
               columnSpacing: defaultPadding,
-              minWidth: 600,
+              minWidth: 750,
               columns: [
                 DataColumn(
-                  label: Text("Donor"),
-                ),
-                DataColumn(
-                  label: Text("Date"),
+                  label: Padding(
+                    padding: const EdgeInsets.only(left: 60),
+                    child: Text("Donor"),
+                  ),
                 ),
                 DataColumn(
                   label: Text("Amount"),
                 ),
+                DataColumn(
+                  label: Text("Date"),
+                ),
               ],
-              rows: List.generate(
-                demoRecentDonations.length,
-                (index) => recentFileDataRow(demoRecentDonations[index]),
-              ),
+              rows: reliefProvider.recentDonations == null
+                  ? []
+                  : reliefProvider.recentDonations!
+                      .map(
+                        (e) => recentFileDataRow(e),
+                      )
+                      .toList(),
             ),
           ),
         ],
@@ -61,7 +73,27 @@ DataRow recentFileDataRow(RecentDonation fileInfo) {
     return address.substring(0, 6) + '...' + address.substring(address.length - 4, address.length);
   }
 
+  if (fileInfo.chain.shortName == 'avalanche') {
+    print(fileInfo.token.symbol);
+    print(fileInfo.token.decimals);
+
+    print(fileInfo.amount);
+  }
+
+  String parseAmount() {
+    if (fileInfo.amount < 1) {
+      return fileInfo.amount.toStringAsFixed(4);
+    } else if (fileInfo.amount < 5) {
+      return fileInfo.amount.toStringAsFixed(2);
+    } else {
+      return fileInfo.amount.toStringAsFixed(0);
+    }
+  }
+
+  String amount = parseAmount();
+
   return DataRow(
+    key: UniqueKey(),
     cells: [
       DataCell(
         Row(
@@ -84,18 +116,21 @@ DataRow recentFileDataRow(RecentDonation fileInfo) {
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
               child: Text(hideAddress(fileInfo.donor!)),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.link))
+            IconButton(
+                onPressed: () {
+                  String url = fileInfo.chain.explorer + '/tx/' + fileInfo.txHash;
+                  launchUrl(Uri.parse(url));
+                },
+                icon: Icon(Icons.link))
           ],
         ),
       ),
       DataCell(
-        Text(fileInfo.date.toString()),
-      ),
-      DataCell(
         Text(
-          fileInfo.amount.toString() + ' ' + fileInfo.chain.symbol,
+          amount + ' ' + fileInfo.token.symbol,
         ),
       ),
+      DataCell(Text(DateFormat('yyyy/MM/dd - HH:mm UTC').format(fileInfo.date))),
     ],
   );
 }

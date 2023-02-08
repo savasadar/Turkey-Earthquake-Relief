@@ -27,7 +27,7 @@ class _ChartState extends State<Chart> {
     paiChartSelectionDatas = provider.accounts.map((e) {
       return PieChartSectionData(
         color: e.chain.color,
-        value: e.totalDonations!.toDouble(),
+        value: e.totalAmountUSD,
         showTitle: false,
         radius: 25,
       );
@@ -37,6 +37,14 @@ class _ChartState extends State<Chart> {
   @override
   Widget build(BuildContext context) {
     ReliefProvider provider = context.watch<ReliefProvider>();
+    paiChartSelectionDatas = provider.accounts.map((e) {
+      return PieChartSectionData(
+        color: e.chain.color,
+        value: e.totalAmountUSD,
+        showTitle: false,
+        radius: 30,
+      );
+    }).toList();
 
     return SizedBox(
       height: 200,
