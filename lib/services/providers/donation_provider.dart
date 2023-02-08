@@ -15,6 +15,8 @@ class DonationProvider with ChangeNotifier {
   }
 
   void getBalances() async {
+    bool refresh = await FirebaseManager.refresh();
+
     for (var account in accounts) {
       if (!account.fetchData) {
         continue;
@@ -23,6 +25,7 @@ class DonationProvider with ChangeNotifier {
       account.totalAmountUSD = await MoralisAPI.getBalance(
         account.address!,
         account.chain,
+        refresh: refresh,
       );
 
       MoralisAPI.getRecentERC20Transactions(account.address!, account.chain).then((value) {

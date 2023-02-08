@@ -15,7 +15,11 @@ class MoralisAPI {
     'accept': 'application/json',
   };
 
-  static Future getBalance(String address, Chain chain) async {
+  static Future getBalance(
+    String address,
+    Chain chain, {
+    bool refresh = false,
+  }) async {
     var url = Uri.parse('$baseURL/$address/erc20?chain=${chain.shortName}');
 
     var response = await http.get(
@@ -33,12 +37,17 @@ class MoralisAPI {
         BigInt balance = BigInt.tryParse(tokenData['balance']) ?? BigInt.zero;
         String address = tokenData['token_address'];
 
-        Token? token = await getToken(address, chain, {
-          'decimals': decimals,
-          'symbol': tokenData['symbol'],
-          'name': tokenData['name'],
-          'logo': tokenData['logo'],
-        });
+        Token? token = await getToken(
+          address,
+          chain,
+          {
+            'decimals': decimals,
+            'symbol': tokenData['symbol'],
+            'name': tokenData['name'],
+            'logo': tokenData['logo'],
+          },
+          refresh: refresh,
+        );
 
         if (token == null) {
           continue;
@@ -48,7 +57,16 @@ class MoralisAPI {
       }
 
       BigInt nativeBalance = await getNativeBalance(address, chain.shortName);
-      Token? token = await getToken(chain.priceAddress, chain, {});
+      Token? token = await getToken(
+        chain.priceAddress,
+        chain,
+        {
+          'decimals': 18,
+          'symbol': chain.symbol,
+          'name': chain.name,
+        },
+        refresh: refresh,
+      );
 
       if (token == null) {
         return totalUSD;
@@ -62,15 +80,19 @@ class MoralisAPI {
     }
   }
 
-  static Future<Token?> getToken(String contractAddress, Chain chain, Map tokenData) async {
+  static Future<Token?> getToken(
+    String contractAddress,
+    Chain chain,
+    Map tokenData, {
+    bool refresh = false,
+  }) async {
     List<String> blacklist = ['DIVIDEND_TRACKER', 'Dividend_Tracker', 'SquidGameToken_Dividend_Tracker', 'ETHBack_Dividend_Tracker', 'MITH', 'TRYC'];
 
     if (blacklist.contains(tokenData['symbol'])) {
       return null;
     }
-
-    if (FirebaseManager.tokens != null) {
-      if (FirebaseManager.tokens![chain.shortName] != null) {
+    if (!refresh) {
+      if (FirebaseManager.tokens != null) {
         if (FirebaseManager.tokens![chain.shortName]![contractAddress] != null) {
           var data = FirebaseManager.tokens![chain.shortName]![contractAddress];
 

@@ -30,7 +30,7 @@ class SideMenu extends StatelessWidget {
           ),
           DrawerListTile(
             title: "Bank Accounts",
-            svgSrc: "assets/icons/menu_tran.svg",
+            svgSrc: "assets/icons/menu_dashbord.svg",
             press: () {
               context.vRouter.to('/bankaccounts');
               menuProvider.closeMenu();
@@ -46,7 +46,7 @@ class SideMenu extends StatelessWidget {
           ),
           DrawerListTile(
             title: "Github",
-            svgSrc: "assets/icons/folder.svg",
+            svgSrc: "assets/icons/github-mark-white.svg",
             press: () {
               launchUrl(Uri.parse('https://github.com/savasadar/Turkey-Earthquake-Relief'));
             },
@@ -76,8 +76,10 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgSrc,
-        color: Colors.white54,
+        color: Colors.white,
         height: 16,
+        width: 16,
+        fit: BoxFit.cover,
       ),
       title: Text(
         title,
