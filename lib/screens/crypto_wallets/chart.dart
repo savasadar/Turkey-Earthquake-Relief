@@ -1,5 +1,5 @@
-import 'package:admin/models/chain.enum.dart';
-import 'package:admin/services/providers/donation_provider.dart';
+import 'package:help2turkey/models/chain.enum.dart';
+import 'package:help2turkey/services/providers/donation_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

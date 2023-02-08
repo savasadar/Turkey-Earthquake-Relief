@@ -1,5 +1,5 @@
-import 'package:admin/components/responsive.dart';
-import 'package:admin/services/providers/menu_provider.dart';
+import 'package:help2turkey/components/responsive.dart';
+import 'package:help2turkey/services/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,8 @@ import '../utils/constants.dart';
 class Header extends StatelessWidget {
   final String title;
   const Header({
-    Key? key, required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -26,8 +27,7 @@ class Header extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.headline6,
           ),
-        if (!Responsive.isMobile(context))
-          Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
+        if (!Responsive.isMobile(context)) Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
         //Expanded(child: SearchField()),
         //ProfileCard()
       ],
@@ -61,8 +61,7 @@ class ProfileCard extends StatelessWidget {
           ),
           if (!Responsive.isMobile(context))
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+              padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
               child: Text("Angelina Jolie"),
             ),
           Icon(Icons.keyboard_arrow_down),

@@ -1,5 +1,5 @@
-import 'package:admin/models/account_info.model.dart';
-import 'package:admin/models/chain.enum.dart';
+import 'package:help2turkey/models/account_info.model.dart';
+import 'package:help2turkey/models/chain.enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

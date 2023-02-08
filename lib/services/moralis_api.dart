@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:admin/models/donation.model.dart';
-import 'package:admin/models/chain.enum.dart';
-import 'package:admin/models/token.model.dart';
-import 'package:admin/services/firebase_manager.dart';
+import 'package:help2turkey/models/donation.model.dart';
+import 'package:help2turkey/models/chain.enum.dart';
+import 'package:help2turkey/models/token.model.dart';
+import 'package:help2turkey/services/firebase_manager.dart';
 import 'package:http/http.dart' as http;
 
 class MoralisAPI {

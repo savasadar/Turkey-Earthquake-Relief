@@ -53,13 +53,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDEh5uGEWxg7JZg81iNrp3_rkHauyrgW9s',
-    appId: '1:346680600555:web:b2eeb737dd5fe07e87dbae',
-    messagingSenderId: '346680600555',
-    projectId: 'turkey-earthquake-bb215',
-    authDomain: 'turkey-earthquake-bb215.firebaseapp.com',
-    databaseURL: 'https://turkey-earthquake-bb215-default-rtdb.firebaseio.com',
-    storageBucket: 'turkey-earthquake-bb215.appspot.com',
-    measurementId: 'G-BSWRJSX76Q',
+    apiKey: 'AIzaSyA-JKQIgYrQXWvPEVE6XJEt7qYSI4rI9vc',
+    appId: '1:774180765926:web:1cd0684215efc730287b27',
+    messagingSenderId: '774180765926',
+    projectId: 'help2turkey',
+    authDomain: 'help2turkey.firebaseapp.com',
+    databaseURL: 'https://help2turkey-default-rtdb.firebaseio.com',
+    storageBucket: 'help2turkey.appspot.com',
+    measurementId: 'G-B0X7B55RRS',
   );
 }

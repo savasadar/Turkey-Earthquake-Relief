@@ -1,16 +1,14 @@
-import 'package:admin/components/responsive.dart';
-import 'package:admin/components/side_menu.dart';
-import 'package:admin/services/providers/menu_provider.dart';
+import 'package:help2turkey/components/responsive.dart';
+import 'package:help2turkey/components/side_menu.dart';
+import 'package:help2turkey/services/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-
 
 class FullPage extends StatefulWidget {
   final Widget? child;
 
   const FullPage({Key? key, this.child}) : super(key: key);
-  
+
   @override
   State<FullPage> createState() => _FullPageState();
 }
@@ -18,7 +16,6 @@ class FullPage extends StatefulWidget {
 class _FullPageState extends State<FullPage> {
   @override
   Widget build(BuildContext context) {
-
     MenuProvider menuProvider = context.watch<MenuProvider>();
 
     return Scaffold(

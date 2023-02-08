@@ -1,5 +1,5 @@
-import 'package:admin/components/header.dart';
-import 'package:admin/screens/information_sources/source_list.dart';
+import 'package:help2turkey/components/header.dart';
+import 'package:help2turkey/screens/information_sources/source_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';

@@ -1,4 +1,4 @@
-import 'package:admin/models/chain.enum.dart';
+import 'package:help2turkey/models/chain.enum.dart';
 
 class AccountInfo {
   final String? address;

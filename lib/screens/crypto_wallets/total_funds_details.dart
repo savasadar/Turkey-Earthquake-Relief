@@ -1,6 +1,6 @@
-import 'package:admin/models/account_info.model.dart';
-import 'package:admin/models/chain.enum.dart';
-import 'package:admin/services/providers/donation_provider.dart';
+import 'package:help2turkey/models/account_info.model.dart';
+import 'package:help2turkey/models/chain.enum.dart';
+import 'package:help2turkey/services/providers/donation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

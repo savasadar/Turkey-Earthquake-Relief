@@ -1,4 +1,5 @@
-import 'package:admin/firebase_options.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:help2turkey/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -10,6 +11,10 @@ class FirebaseManager {
   static Future init() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    await FirebaseAppCheck.instance.activate(
+      webRecaptchaSiteKey: '6Ld0F2UkAAAAAHe4RuJw7szCRjp2D5gDqVE1Tbqw',
     );
 
     getTokenPrices();

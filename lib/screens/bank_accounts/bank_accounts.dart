@@ -1,4 +1,4 @@
-import 'package:admin/screens/bank_accounts/bank_account_list.dart';
+import 'package:help2turkey/screens/bank_accounts/bank_account_list.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../components/header.dart';

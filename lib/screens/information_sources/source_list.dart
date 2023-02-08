@@ -1,4 +1,4 @@
-import 'package:admin/models/information_source.model.dart';
+import 'package:help2turkey/models/information_source.model.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';

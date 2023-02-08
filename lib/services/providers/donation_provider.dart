@@ -1,8 +1,8 @@
-import 'package:admin/models/account_info.model.dart';
-import 'package:admin/models/donation.model.dart';
-import 'package:admin/models/chain.enum.dart';
-import 'package:admin/services/firebase_manager.dart';
-import 'package:admin/services/moralis_api.dart';
+import 'package:help2turkey/models/account_info.model.dart';
+import 'package:help2turkey/models/donation.model.dart';
+import 'package:help2turkey/models/chain.enum.dart';
+import 'package:help2turkey/services/firebase_manager.dart';
+import 'package:help2turkey/services/moralis_api.dart';
 import 'package:flutter/material.dart';
 
 class DonationProvider with ChangeNotifier {

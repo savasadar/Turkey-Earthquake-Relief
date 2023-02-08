@@ -1,4 +1,4 @@
-name: admin
+name: help2turkey
 description: A new Flutter project.
 
 publish_to: "none"
@@ -24,6 +24,7 @@ dependencies:
     provider: ^6.0.5
     vrouter: ^1.2.1
     qr_flutter: ^4.0.0
+    firebase_app_check: ^0.1.1+9
 
 dev_dependencies:
     flutter_test:

@@ -1,4 +1,4 @@
-import 'package:admin/services/providers/menu_provider.dart';
+import 'package:help2turkey/services/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';

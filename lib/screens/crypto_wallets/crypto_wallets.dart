@@ -1,5 +1,5 @@
-import 'package:admin/components/responsive.dart';
-import 'package:admin/screens/crypto_wallets/crypto_accounts.dart';
+import 'package:help2turkey/components/responsive.dart';
+import 'package:help2turkey/screens/crypto_wallets/crypto_accounts.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';

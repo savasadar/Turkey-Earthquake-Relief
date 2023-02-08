@@ -1,5 +1,5 @@
-import 'package:admin/models/chain.enum.dart';
-import 'package:admin/models/token.model.dart';
+import 'package:help2turkey/models/chain.enum.dart';
+import 'package:help2turkey/models/token.model.dart';
 
 class Donation {
   final String? donor;

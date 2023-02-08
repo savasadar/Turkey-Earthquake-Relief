@@ -1,10 +1,10 @@
-import 'package:admin/utils/constants.dart';
-import 'package:admin/screens/bank_accounts/bank_accounts.dart';
-import 'package:admin/screens/crypto_wallets/crypto_wallets.dart';
-import 'package:admin/components/full_page.dart';
-import 'package:admin/screens/information_sources/sources.dart';
-import 'package:admin/services/firebase_manager.dart';
-import 'package:admin/services/providers/donation_provider.dart';
+import 'package:help2turkey/utils/constants.dart';
+import 'package:help2turkey/screens/bank_accounts/bank_accounts.dart';
+import 'package:help2turkey/screens/crypto_wallets/crypto_wallets.dart';
+import 'package:help2turkey/components/full_page.dart';
+import 'package:help2turkey/screens/information_sources/sources.dart';
+import 'package:help2turkey/services/firebase_manager.dart';
+import 'package:help2turkey/services/providers/donation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
