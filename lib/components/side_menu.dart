@@ -30,7 +30,7 @@ class SideMenu extends StatelessWidget {
           ),
           DrawerListTile(
             title: "Bank Accounts",
-            svgSrc: "assets/icons/menu_dashbord.svg",
+            svgSrc: "assets/icons/menu_dashboard.svg",
             press: () {
               context.vRouter.to('/bankaccounts');
               menuProvider.closeMenu();

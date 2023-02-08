@@ -18,6 +18,18 @@ class FileInfoCard extends StatelessWidget {
     return address.substring(0, 6) + '...' + address.substring(address.length - 4, address.length);
   }
 
+  Color? getColor() {
+    if (account.chain.shortName == 'tron') {
+      return Colors.white;
+    }
+
+    if (account.chain.shortName == 'polkadot') {
+      return account.chain.color;
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
@@ -42,10 +54,10 @@ class FileInfoCard extends StatelessWidget {
                     color: account.chain.color.withOpacity(0.1),
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: SvgPicture.asset(account.chain.icon
-
-                      // color: info.color,
-                      ),
+                  child: SvgPicture.asset(
+                    account.chain.icon,
+                    color: getColor(),
+                  ),
                 ),
                 IconButton(
                   onPressed: () async {
