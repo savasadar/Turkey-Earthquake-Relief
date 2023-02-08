@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return VRouter(
         debugShowCheckedModeBanner: false,
-        title: 'Turkey Earthquake Relief Panel',
+        title: 'Turkey Earthquake Donation Sources',
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: bgColor,
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).apply(bodyColor: Colors.white),
