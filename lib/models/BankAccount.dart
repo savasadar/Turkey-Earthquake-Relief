@@ -26,7 +26,7 @@ class BankAccount {
         return Color(0xFF81B222);
       case "AFAD":
         return Color(0xFF002B6C);
-      case "AFAD":
+      case "KIZILAY":
         return Color(0xFFD30D17);
       default:
         return Colors.white;
