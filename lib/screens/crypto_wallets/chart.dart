@@ -1,5 +1,5 @@
 import 'package:admin/models/chain.enum.dart';
-import 'package:admin/services/providers/relief_provider.dart';
+import 'package:admin/services/providers/donation_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -26,8 +26,8 @@ class _ChartState extends State<Chart> {
 
   @override
   Widget build(BuildContext context) {
-    ReliefProvider provider = context.watch<ReliefProvider>();
-    paiChartSelectionDatas = provider.accounts.map((e) {
+    DonationProvider donationProvider = context.watch<DonationProvider>();
+    paiChartSelectionDatas = donationProvider.accounts.map((e) {
       return PieChartSectionData(
         color: e.chain.color,
         value: e.totalAmountUSD,
@@ -54,7 +54,7 @@ class _ChartState extends State<Chart> {
               children: [
                 SizedBox(height: defaultPadding),
                 Text(
-                  NumberFormat.compactSimpleCurrency(name: 'USD', decimalDigits: 2).format(provider.totalRaised),
+                  NumberFormat.compactSimpleCurrency(name: 'USD', decimalDigits: 2).format(donationProvider.totalRaised),
                   style: Theme.of(context).textTheme.headline4!.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,

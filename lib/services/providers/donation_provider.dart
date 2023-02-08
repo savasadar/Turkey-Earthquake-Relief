@@ -5,8 +5,8 @@ import 'package:admin/services/firebase_manager.dart';
 import 'package:admin/services/moralis_api.dart';
 import 'package:flutter/material.dart';
 
-class ReliefProvider with ChangeNotifier {
-  ReliefProvider() {
+class DonationProvider with ChangeNotifier {
+  DonationProvider() {
     setTotalRaised();
 
     FirebaseManager.getTokenPrices().then((value) {

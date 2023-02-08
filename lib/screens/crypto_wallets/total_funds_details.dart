@@ -1,6 +1,6 @@
 import 'package:admin/models/account_info.model.dart';
 import 'package:admin/models/chain.enum.dart';
-import 'package:admin/services/providers/relief_provider.dart';
+import 'package:admin/services/providers/donation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +15,11 @@ class StarageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReliefProvider provider = context.watch<ReliefProvider>();
+    DonationProvider donationProvider = context.watch<DonationProvider>();
 
     List<AccountInfo> accounts = [];
 
-    for (AccountInfo accountInfo in provider.accounts) {
-
+    for (AccountInfo accountInfo in donationProvider.accounts) {
       if (!accountInfo.fetchData) {
         continue;
       }

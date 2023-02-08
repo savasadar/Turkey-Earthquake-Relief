@@ -1,6 +1,6 @@
 import 'package:admin/models/donation.model.dart';
 import 'package:admin/models/chain.enum.dart';
-import 'package:admin/services/providers/relief_provider.dart';
+import 'package:admin/services/providers/donation_provider.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,7 +17,7 @@ class RecentDonations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReliefProvider reliefProvider = context.watch<ReliefProvider>();
+    DonationProvider donationProvider = context.watch<DonationProvider>();
 
     return Container(
       padding: EdgeInsets.all(defaultPadding),
@@ -40,22 +40,22 @@ class RecentDonations extends StatelessWidget {
               columnSpacing: defaultPadding,
               minWidth: 750,
               columns: [
-                DataColumn(
-                  label: Padding(
-                    padding: const EdgeInsets.only(left: 60),
-                    child: Text("Donor"),
-                  ),
-                ),
-                DataColumn(
+                DataColumn2(
+                    label: Padding(
+                      padding: const EdgeInsets.only(left: 60),
+                      child: Text("Donor"),
+                    ),
+                    fixedWidth: 200),
+                DataColumn2(
                   label: Text("Amount"),
                 ),
-                DataColumn(
+                DataColumn2(
                   label: Text("Date"),
                 ),
               ],
-              rows: reliefProvider.recentDonations == null
+              rows: donationProvider.recentDonations == null
                   ? []
-                  : reliefProvider.recentDonations!
+                  : donationProvider.recentDonations!
                       .map(
                         (e) => recentFileDataRow(e),
                       )
@@ -90,6 +90,7 @@ DataRow recentFileDataRow(Donation fileInfo) {
     cells: [
       DataCell(
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               padding: EdgeInsets.all(defaultPadding * 0.6),
@@ -106,15 +107,20 @@ DataRow recentFileDataRow(Donation fileInfo) {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+              padding: const EdgeInsets.only(left: 10),
               child: Text(hideAddress(fileInfo.donor!)),
             ),
+            Spacer(),
             IconButton(
-                onPressed: () {
-                  String url = fileInfo.chain.explorer + '/tx/' + fileInfo.txHash;
-                  launchUrl(Uri.parse(url));
-                },
-                icon: Icon(Icons.link))
+              onPressed: () {
+                String url = fileInfo.chain.explorer + '/tx/' + fileInfo.txHash;
+                launchUrl(Uri.parse(url));
+              },
+              icon: Icon(
+                Icons.open_in_new,
+                size: 15,
+              ),
+            )
           ],
         ),
       ),

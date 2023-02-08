@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:admin/models/account_info.model.dart';
 import 'package:admin/components/responsive.dart';
-import 'package:admin/services/providers/relief_provider.dart';
+import 'package:admin/services/providers/donation_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -63,8 +63,8 @@ class FileInfoCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ReliefProvider provider = context.watch<ReliefProvider>();
-    List<AccountInfo> accounts = provider.accounts;
+    DonationProvider donationProvider = context.watch<DonationProvider>();
+    List<AccountInfo> accounts = donationProvider.accounts;
 
     return LayoutBuilder(builder: (context, con) {
       int crossAxisCount = this.crossAxisCount;
