@@ -10,6 +10,10 @@ class AccountInfo {
   double totalAmount;
   double totalAmountUSD;
 
+  String organization;
+
+  bool fetchData;
+
   AccountInfo({
     required this.chain,
     this.totalDonations,
@@ -17,5 +21,7 @@ class AccountInfo {
     this.address,
     required this.totalAmount,
     required this.totalAmountUSD,
+    required this.organization,
+    this.fetchData = true,
   });
 }

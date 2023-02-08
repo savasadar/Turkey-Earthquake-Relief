@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:admin/models/AccounInfo.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/services/relief_provider.dart';
@@ -42,12 +44,9 @@ class MyFiles extends StatelessWidget {
         Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 && _size.width > 350 ? 1.3 : 1,
           ),
           tablet: FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
-          ),
+          desktop: FileInfoCardGridView(),
         ),
       ],
     );
@@ -58,27 +57,37 @@ class FileInfoCardGridView extends StatelessWidget {
   const FileInfoCardGridView({
     Key? key,
     this.crossAxisCount = 4,
-    this.childAspectRatio = 1,
   }) : super(key: key);
 
   final int crossAxisCount;
-  final double childAspectRatio;
 
   @override
   Widget build(BuildContext context) {
     ReliefProvider provider = context.watch<ReliefProvider>();
     List<AccountInfo> accounts = provider.accounts;
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: accounts.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => FileInfoCard(account: accounts[index]),
-    );
+
+    return LayoutBuilder(builder: (context, con) {
+      int crossAxisCount = this.crossAxisCount;
+      double childAspectRatio = 1;
+
+      crossAxisCount = max((con.maxWidth ~/ 190).toInt(), 1);
+
+      if (crossAxisCount == 1) {
+        childAspectRatio = 2;
+      }
+
+      return GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: accounts.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: defaultPadding,
+          mainAxisSpacing: defaultPadding,
+          childAspectRatio: childAspectRatio,
+        ),
+        itemBuilder: (context, index) => FileInfoCard(account: accounts[index]),
+      );
+    });
   }
 }

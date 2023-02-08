@@ -1,6 +1,7 @@
 import 'package:admin/models/BankAccount.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../constants.dart';
 
@@ -55,7 +56,7 @@ class BankAccountList extends StatelessWidget {
               ],
               rows: List.generate(
                 bankAccounts.length,
-                (index) => bankAccountDataRow(bankAccounts[index]),
+                (index) => bankAccountDataRow(context, bankAccounts[index]),
               ),
             ),
           ),
@@ -65,11 +66,7 @@ class BankAccountList extends StatelessWidget {
   }
 }
 
-DataRow bankAccountDataRow(BankAccount bankAccount) {
-  String hideAddress(String address) {
-    return address.substring(0, 6) + '...' + address.substring(address.length - 4, address.length);
-  }
-
+DataRow bankAccountDataRow(BuildContext context, BankAccount bankAccount) {
   return DataRow(
     cells: [
       DataCell(
@@ -91,17 +88,17 @@ DataRow bankAccountDataRow(BankAccount bankAccount) {
       ),
       DataCell(
         Container(
-              padding: EdgeInsets.all(defaultPadding * 0.6),
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-              ),
-              child: Text(
-                bankAccount.bankName.toUpperCase(),
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+          padding: EdgeInsets.all(defaultPadding * 0.6),
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          ),
+          child: Text(
+            bankAccount.bankName.toUpperCase(),
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
       DataCell(
         Row(
@@ -110,7 +107,16 @@ DataRow bankAccountDataRow(BankAccount bankAccount) {
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
               child: Text(bankAccount.iban),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.copy))
+            IconButton(
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: bankAccount.iban));
+
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('IBAN copied to clipboard'),
+                ));
+              },
+              icon: Icon(Icons.copy),
+            )
           ],
         ),
       ),

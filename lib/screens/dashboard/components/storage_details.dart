@@ -17,6 +17,22 @@ class StarageDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     ReliefProvider provider = context.watch<ReliefProvider>();
 
+    List<AccountInfo> accounts = [];
+
+    for (AccountInfo accountInfo in provider.accounts) {
+
+      if (!accountInfo.fetchData) {
+        continue;
+      }
+
+      if (accounts.where((element) => element.chain == accountInfo.chain).isEmpty) {
+        accounts.add(accountInfo);
+      } else {
+        AccountInfo account = accounts.firstWhere((element) => element.chain == accountInfo.chain);
+        account.totalAmountUSD += accountInfo.totalAmountUSD;
+      }
+    }
+
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -35,7 +51,7 @@ class StarageDetails extends StatelessWidget {
           ),
           SizedBox(height: defaultPadding),
           Chart(),
-          ...provider.accounts
+          ...accounts
               .map((e) => StorageInfoCard(
                     svgSrc: e.chain.icon,
                     title: e.chain.name,

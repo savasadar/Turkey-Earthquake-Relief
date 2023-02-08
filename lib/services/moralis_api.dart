@@ -35,10 +35,7 @@ class MoralisAPI {
         BigInt balance = BigInt.tryParse(tokenData['balance']) ?? BigInt.zero;
         String address = tokenData['token_address'];
 
-        if (address == '0xdac17f958d2ee523a2206206994597c13d831ec7') {
-          print(tokenData);
-        }
-
+     
         Token? token = await getToken(address, chain, {
           'decimals': decimals,
           'symbol': tokenData['symbol'],
@@ -64,7 +61,6 @@ class MoralisAPI {
 
       return totalUSD;
 
-      // print("Total Funded: ${format.format(totalUSD)}");
     } else {
       return 0;
     }
@@ -91,6 +87,10 @@ class MoralisAPI {
           );
         }
       }
+    }
+
+    if (tokenData.isEmpty) {
+      return null;
     }
 
     var url = Uri.parse('$baseURL/erc20/$contractAddress/price?chain=${chain.shortName}');

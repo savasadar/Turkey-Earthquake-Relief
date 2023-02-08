@@ -73,12 +73,6 @@ DataRow recentFileDataRow(RecentDonation fileInfo) {
     return address.substring(0, 6) + '...' + address.substring(address.length - 4, address.length);
   }
 
-  if (fileInfo.chain.shortName == 'avalanche') {
-    print(fileInfo.token.symbol);
-    print(fileInfo.token.decimals);
-
-    print(fileInfo.amount);
-  }
 
   String parseAmount() {
     if (fileInfo.amount < 1) {

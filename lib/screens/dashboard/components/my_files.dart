@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:admin/responsive.dart';
 import 'package:admin/services/relief_provider.dart';
 import 'package:flutter/material.dart';
@@ -70,17 +72,25 @@ class FileInfoCardGridView extends StatelessWidget {
     ReliefProvider provider = context.watch<ReliefProvider>();
     List<AccountInfo> accounts = provider.accounts;
 
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: accounts.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => FileInfoCard(account: accounts[index]),
-    );
+    return LayoutBuilder(builder: (context, con) {
+      int crossAxisCount = this.crossAxisCount;
+
+      crossAxisCount = max((con.maxWidth % 180).toInt(), 1);
+
+      print("CrossAxisCount: $crossAxisCount");
+
+      return GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: accounts.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: defaultPadding,
+          mainAxisSpacing: defaultPadding,
+          childAspectRatio: childAspectRatio,
+        ),
+        itemBuilder: (context, index) => FileInfoCard(account: accounts[index]),
+      );
+    });
   }
 }

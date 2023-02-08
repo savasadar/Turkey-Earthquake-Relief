@@ -23,15 +23,6 @@ class _ChartState extends State<Chart> {
   void initState() {
     super.initState();
     ReliefProvider provider = context.read<ReliefProvider>();
-
-    paiChartSelectionDatas = provider.accounts.map((e) {
-      return PieChartSectionData(
-        color: e.chain.color,
-        value: e.totalAmountUSD,
-        showTitle: false,
-        radius: 25,
-      );
-    }).toList();
   }
 
   @override

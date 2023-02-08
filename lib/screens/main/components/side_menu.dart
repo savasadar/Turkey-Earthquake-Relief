@@ -16,8 +16,8 @@ class SideMenu extends StatelessWidget {
             child: Image.asset("assets/images/logo.png"),
           ),
           DrawerListTile(
-            title: "Dashboard",
-            svgSrc: "assets/icons/menu_dashbord.svg",
+            title: "Crypto Wallets",
+            svgSrc: "assets/icons/chains/ethereum.svg",
             press: () {
               context.vRouter.to('/dashboard');
             },
