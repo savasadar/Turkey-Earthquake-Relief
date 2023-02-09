@@ -27,7 +27,7 @@ class BankAccountList extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            height: 530,
+            height: 800,
             child: DataTable2(
               columnSpacing: defaultPadding,
               minWidth: 1000,

@@ -115,6 +115,34 @@ class DonationProvider with ChangeNotifier {
       organization: 'Türk Kızılayı',
       fetchData: false,
     ),
+    // AFAD
+    AccountInfo(
+      chain: Chain.bitcoin,
+      totalDonations: 0,
+      address: 'bc1q30uv6s9gwyzq2fd5hhc06v7xge3zzg3qa99vuv0w5dfmxgq8vnws97dpcl',
+      totalAmount: 0,
+      totalAmountUSD: 0,
+      organization: 'AFAD',
+      fetchData: false,
+    ),
+    AccountInfo(
+      chain: Chain.ethereum,
+      totalDonations: 0,
+      address: '0x64A994CC850a56e87331d880A23A69b16dbFC8ea',
+      totalAmount: 0,
+      totalAmountUSD: 0,
+      organization: 'AFAD',
+      fetchData: false,
+    ),
+    AccountInfo(
+      chain: Chain.tron,
+      totalDonations: 0,
+      address: 'TTLfZCo1hnsiviBns2ZsWig1dHWJsG5ct8',
+      totalAmount: 0,
+      totalAmountUSD: 0,
+      organization: 'AFAD',
+      fetchData: false,
+    ),
   ];
 
   double totalRaised = 0;
