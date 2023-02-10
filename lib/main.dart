@@ -53,7 +53,11 @@ class MyApp extends StatelessWidget {
               VWidget(path: '/', widget: DashboardScreen()),
               VWidget(path: 'dashboard', widget: DashboardScreen()),
               VWidget(path: 'bankaccounts', widget: BankAccountsScreen()),
-              VWidget(path: 'sources', widget: SourcesScreen())
+              VWidget(path: 'sources', widget: SourcesScreen()),
+              VRouteRedirector(
+                redirectTo: 'dashboard',
+                path: r'*',
+              ),
             ],
           )
         ]);
